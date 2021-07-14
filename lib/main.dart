@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fluttershare/pages/home.dart';
+import 'package:mku_gossip/pages/home.dart';
 
 void main() {
   runApp(MyApp());

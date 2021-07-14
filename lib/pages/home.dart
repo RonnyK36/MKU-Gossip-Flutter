@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttershare/models/user.dart';
-import 'package:fluttershare/pages/activity_feed.dart';
-import 'package:fluttershare/pages/create_account.dart';
-import 'package:fluttershare/pages/profile.dart';
-import 'package:fluttershare/pages/search.dart';
-import 'package:fluttershare/pages/upload.dart';
+import 'package:mku_gossip/models/user.dart';
+import 'package:mku_gossip/pages/activity_feed.dart';
+import 'package:mku_gossip/pages/create_account.dart';
+import 'package:mku_gossip/pages/profile.dart';
+import 'package:mku_gossip/pages/search.dart';
+import 'package:mku_gossip/pages/upload.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 final GoogleSignIn googleSignIn = GoogleSignIn();
