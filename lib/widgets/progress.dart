@@ -14,6 +14,7 @@ Container linearProgress() {
   return Container(
     padding: EdgeInsets.only(bottom: 10),
     child: LinearProgressIndicator(
+      backgroundColor: Colors.white,
       valueColor: AlwaysStoppedAnimation(Colors.blue),
     ),
   );
