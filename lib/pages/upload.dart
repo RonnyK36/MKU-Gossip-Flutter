@@ -161,9 +161,9 @@ class _UploadState extends State<Upload> {
                 width: 350,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: FileImage(file),
-                    // file == null
-                    //     ? AssetImage('assets/images/Screenshot (27).png')
+                    image: file == null
+                        ? AssetImage('assets/images/Screenshot (27).png')
+                        : FileImage(file),
 
                     // fit: BoxFit.cover,
                   ),
