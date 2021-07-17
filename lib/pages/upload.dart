@@ -19,15 +19,20 @@ class _UploadState extends State<Upload> {
   // final picker = ImagePicker();
 
   handleTakePhoto() async {
+    Navigator.pop(context);
     File pickedFile = await ImagePicker.pickImage(
       source: ImageSource.camera,
       maxHeight: 675,
       maxWidth: 960,
     );
+    // file = pickedFile;
     setState(() {
-      file = pickedFile;
+      if (pickedFile != null) {
+        this.file = pickedFile;
+      } else {
+        print('Failed to load image');
+      }
     });
-    Navigator.pop(context);
   }
 
   // Future handleChooseFromGallery() async {
@@ -44,13 +49,13 @@ class _UploadState extends State<Upload> {
   // }
 
   handleChooseFromGallery() async {
+    Navigator.pop(context);
     File pickedFile = await ImagePicker.pickImage(
       source: ImageSource.gallery,
     );
     setState(() {
-      file = pickedFile;
+      this.file = pickedFile;
     });
-    Navigator.pop(context);
   }
 
   selectImage(parentContext) {
@@ -149,16 +154,18 @@ class _UploadState extends State<Upload> {
         children: [
           Container(
             width: MediaQuery.of(context).size.width * 0.8,
-            height: 220,
+            height: 240,
             child: Center(
-              child: AspectRatio(
-                aspectRatio: 16 / 9,
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: FileImage(file),
-                      fit: BoxFit.cover,
-                    ),
+              child: Container(
+                height: 230,
+                width: 350,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: FileImage(file),
+                    // file == null
+                    //     ? AssetImage('assets/images/Screenshot (27).png')
+
+                    // fit: BoxFit.cover,
                   ),
                 ),
               ),
