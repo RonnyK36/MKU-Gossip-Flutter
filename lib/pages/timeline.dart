@@ -14,7 +14,7 @@ class _TimelineState extends State<Timeline> {
   @override
   void initState() {
     // getUser();
-    // createUser();
+    createUser();
     super.initState();
   }
 
