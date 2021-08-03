@@ -31,23 +31,27 @@ class _UploadState extends State<Upload> {
 
   handleTakePhoto() async {
     Navigator.pop(context);
-    final pickedFile = await ImagePicker.pickImage(
+    // final pickedFile = await ImagePicker.pickImage(
+    //   source: ImageSource.camera,
+
+    // );
+    File pickedFile = await ImagePicker.pickImage(
       source: ImageSource.camera,
-      // maxHeight: 675,
-      // maxWidth: 960,
+      maxHeight: 675,
+      maxWidth: 960,
     );
     setState(() {
       this.file = pickedFile;
     });
   }
 
-  Future handleChooseFromGallery() async {
+  handleChooseFromGallery() async {
     Navigator.pop(context);
-    final pickedFile = await ImagePicker.pickImage(
+    final pickedFile = (await ImagePicker().getImage(
       source: ImageSource.gallery,
-    );
+    ));
     setState(() {
-      this.file = pickedFile;
+      this.file = File(pickedFile.path);
     });
   }
 
@@ -171,7 +175,11 @@ class _UploadState extends State<Upload> {
     );
   }
 
-  doNothing() {}
+  doNothing() {
+    setState(() {
+      isUploading = false;
+    });
+  }
 
   Scaffold buildUploadForm() {
     return Scaffold(
@@ -190,7 +198,7 @@ class _UploadState extends State<Upload> {
         ),
         actions: [
           TextButton(
-            onPressed: isUploading ? doNothing() : () => handleSubmit(),
+            onPressed: isUploading ? null : () => handleSubmit(),
             child: Text(
               'POST',
               style: TextStyle(
@@ -220,7 +228,7 @@ class _UploadState extends State<Upload> {
                                 image: AssetImage(
                                     'assets/images/Screenshot (27).png'))),
                       ))
-                    : Image.file(file),
+                    : FileImage(file),
               ),
             ),
           ),
@@ -292,6 +300,9 @@ class _UploadState extends State<Upload> {
     String completeAddress =
         '${placemark.subLocality},${placemark.locality},${placemark.subAdministrativeArea},${placemark.administrativeArea},${placemark.country},${placemark.postalCode},${placemark.position}';
     print(completeAddress);
+
+    String formattedAddress = "${placemark.locality},${placemark.country}";
+    locationController.text = formattedAddress;
   }
 
   @override
